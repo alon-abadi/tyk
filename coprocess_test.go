@@ -17,8 +17,8 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/justinas/alice"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/coprocess"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/coprocess"
 )
 
 const baseMiddlewarePath = "middleware/python"

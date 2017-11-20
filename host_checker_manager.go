@@ -11,7 +11,7 @@ import (
 	"github.com/satori/go.uuid"
 	"gopkg.in/vmihailenco/msgpack.v2"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 var GlobalHostChecker HostCheckerManager

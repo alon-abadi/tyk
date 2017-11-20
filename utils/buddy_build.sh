@@ -8,7 +8,7 @@ echo Generating key
 echo Prepare the release directories
 export SOURCEBIN=tyk
 export CLIBIN=tyk-cli
-export SOURCEBINPATH=/src/github.com/TykTechnologies/tyk
+export SOURCEBINPATH=/src/github.com/gtforge/tyk
 export i386BINDIR=$SOURCEBINPATH/build/i386/tyk.linux.i386-$VERSION
 export amd64BINDIR=$SOURCEBINPATH/build/amd64/tyk.linux.amd64-$VERSION
 export armBINDIR=$SOURCEBINPATH/build/arm/tyk.linux.arm64-$VERSION
@@ -18,8 +18,8 @@ export amd64TGZDIR=$SOURCEBINPATH/build/amd64/tgz/tyk.linux.amd64-$VERSION
 export armTGZDIR=$SOURCEBINPATH/build/arm/tgz/tyk.linux.arm64-$VERSION
 export PACKAGECLOUDREPO=$PC_TARGET
 
-orgDir=/src/github.com/TykTechnologies
-cliDIR=/src/github.com/TykTechnologies/tyk-cli
+orgDir=/src/github.com/gtforge
+cliDIR=/src/github.com/gtforge/tyk-cli
 cliTmpDir=$SOURCEBINPATH/temp/cli
 DESCRIPTION="Tyk Open Source API Gateway written in Go"
 
@@ -29,7 +29,7 @@ mkdir -p $cliTmpDir
 
 echo "Preparing CLI Build"
 cd $orgDir
-git clone https://github.com/TykTechnologies/tyk-cli.git
+git clone https://github.com/gtforge/tyk-cli.git
 cd $cliDIR
 git checkout master
 go get -v ./...
@@ -130,7 +130,7 @@ AMDDEBNAME="tyk-gateway_"$VERSION"_amd64.deb"
 AMDRPMNAME="tyk-gateway-"$VERSION"-1.x86_64.rpm"
 
 echo "Signing AMD RPM"
-/src/github.com/TykTechnologies/tyk/build_tools/rpm-sign.exp $amd64TGZDIR/$AMDRPMNAME
+/src/github.com/gtforge/tyk/build_tools/rpm-sign.exp $amd64TGZDIR/$AMDRPMNAME
 
 echo Creating Deb Package for i386
 cd $i386TGZDIR/
@@ -141,7 +141,7 @@ i386DEBNAME="tyk-gateway_"$VERSION"_i386.deb"
 i386RPMNAME="tyk-gateway-"$VERSION"-1.i386.rpm"
 
 echo "Signing i386 RPM"
-/src/github.com/TykTechnologies/tyk/build_tools/rpm-sign.exp $i386TGZDIR/$i386RPMNAME
+/src/github.com/gtforge/tyk/build_tools/rpm-sign.exp $i386TGZDIR/$i386RPMNAME
 
 echo Creating Deb Package for ARM
 cd $armTGZDIR/
@@ -152,4 +152,4 @@ ARMDEBNAME="tyk-gateway_"$VERSION"_arm64.deb"
 ARMRPMNAME="tyk-gateway-"$VERSION"-1.arm64.rpm"
 
 echo "Signing Arm RPM"
-/src/github.com/TykTechnologies/tyk/build_tools/rpm-sign.exp $armTGZDIR/$ARMRPMNAME
+/src/github.com/gtforge/tyk/build_tools/rpm-sign.exp $armTGZDIR/$ARMRPMNAME

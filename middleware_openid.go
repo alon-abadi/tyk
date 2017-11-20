@@ -12,7 +12,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 
 	"github.com/TykTechnologies/openid2go/openid"
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 const OIDPREFIX = "openid"

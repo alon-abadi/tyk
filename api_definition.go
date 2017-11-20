@@ -15,7 +15,7 @@ import (
 
 	"github.com/rubyist/circuitbreaker"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 const (

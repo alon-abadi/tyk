@@ -9,7 +9,7 @@ import (
 	"github.com/Sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 // BasicAuthKeyIsValid uses a username instead of

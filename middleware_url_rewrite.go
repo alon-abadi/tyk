@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/context"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 type URLRewriter struct{}

@@ -17,7 +17,7 @@ import (
 	"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 // APIModifyKeySuccess represents when a Key modification was successful

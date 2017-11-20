@@ -11,7 +11,7 @@ import (
 	"github.com/clbanning/mxj"
 	"github.com/mitchellh/mapstructure"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 type ResponsetransformOptions struct {

@@ -12,7 +12,7 @@ import (
 
 	"github.com/mitchellh/mapstructure"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 // RequestObject is marshalled to JSON string and passed into JSON middleware

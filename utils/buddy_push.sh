@@ -3,7 +3,7 @@ export VERSION=$(perl -n -e'/v(\d+).(\d+).(\d+)/'' && print "$1\.$2\.$3"' versio
 
 export SOURCEBIN=tyk
 export CLIBIN=tyk-cli
-export SOURCEBINPATH=/src/github.com/TykTechnologies/tyk
+export SOURCEBINPATH=/src/github.com/gtforge/tyk
 export i386BINDIR=$SOURCEBINPATH/build/i386/tyk.linux.i386-$VERSION
 export amd64BINDIR=$SOURCEBINPATH/build/amd64/tyk.linux.amd64-$VERSION
 export armBINDIR=$SOURCEBINPATH/build/arm/tyk.linux.arm64-$VERSION

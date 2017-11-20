@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 type APIImporterSource string

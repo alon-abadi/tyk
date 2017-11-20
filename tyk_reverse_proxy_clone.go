@@ -24,7 +24,7 @@ import (
 	"github.com/gorilla/context"
 	"github.com/pmylund/go-cache"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 	"github.com/newrelic/go-agent"
 )
 

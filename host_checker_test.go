@@ -6,7 +6,7 @@ import (
 	"testing"
 	"text/template"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 const sampleUptimeTestAPI = `{

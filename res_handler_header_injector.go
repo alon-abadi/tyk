@@ -5,7 +5,7 @@ import (
 
 	"github.com/mitchellh/mapstructure"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 type HeaderInjectorOptions struct {

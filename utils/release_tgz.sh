@@ -42,7 +42,7 @@ i386TGZDIR=$SOURCEBINPATH/build/i386/tgz/tyk.linux.i386-$VERSION
 amd64TGZDIR=$SOURCEBINPATH/build/amd64/tgz/tyk.linux.amd64-$VERSION
 armTGZDIR=$SOURCEBINPATH/build/arm/tgz/tyk.linux.arm64-$VERSION
 
-cliDIR=~/go/src/github.com/TykTechnologies/tyk-cli
+cliDIR=~/go/src/github.com/gtforge/tyk-cli
 cliTmpDir=$SOURCEBINPATH/temp/cli
 
 echo "Clearing CLI temp folder"

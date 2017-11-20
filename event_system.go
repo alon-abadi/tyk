@@ -12,7 +12,7 @@ import (
 	"github.com/rubyist/circuitbreaker"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 // The name for event handlers as defined in the API Definition JSON/BSON format

@@ -18,7 +18,7 @@ import "C"
 import (
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 // CoProcessDefaultKeyPrefix is used as a key prefix for this CP.

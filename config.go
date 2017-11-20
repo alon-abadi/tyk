@@ -12,7 +12,7 @@ import (
 	"github.com/kelseyhightower/envconfig"
 	"github.com/satori/go.uuid"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 type PoliciesConfig struct {

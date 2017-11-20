@@ -5,7 +5,7 @@ package main
 import (
 	"encoding/json"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 // Constant for event system.

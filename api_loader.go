@@ -10,8 +10,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/justinas/alice"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/coprocess"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/coprocess"
 )
 
 type ChainObject struct {

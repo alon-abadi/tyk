@@ -17,7 +17,7 @@ import (
 
 	pprof_http "net/http/pprof"
 
-	logger "github.com/TykTechnologies/tyk/log"
+	logger "github.com/gtforge/tyk/log"
 
 	"github.com/Sirupsen/logrus"
 	logrus_syslog "github.com/Sirupsen/logrus/hooks/syslog"
@@ -34,7 +34,7 @@ import (
 	"rsc.io/letsencrypt"
 
 	"github.com/TykTechnologies/goagain"
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 var (

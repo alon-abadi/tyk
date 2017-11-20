@@ -14,7 +14,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 type WebHookRequestMethod string

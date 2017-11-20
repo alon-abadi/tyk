@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 func TestRewriter(t *testing.T) {
