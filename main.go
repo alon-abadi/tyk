@@ -67,7 +67,6 @@ var (
 	policiesMu   sync.RWMutex
 	policiesByID = map[string]user.Policy{}
 
-	router        *routerSwapper
 	mainRouter    *mux.Router
 	controlRouter *mux.Router
 	LE_MANAGER    letsencrypt.Manager
@@ -98,7 +97,7 @@ func getApiSpec(apiID string) *APISpec {
 
 // Create all globals and init connection handlers
 func setupGlobals() {
-	router = &routerSwapper{}
+	mainRouter = mux.NewRouter()
 	controlRouter = mux.NewRouter()
 
 	if config.Global.EnableAnalytics && config.Global.Storage.Type != "redis" {
@@ -628,6 +627,14 @@ func doReload() {
 	// Reset the JSVM
 	if config.Global.EnableJSVM {
 		GlobalEventsJSVM.Init(nil)
+	}
+
+	log.WithFields(logrus.Fields{
+		"prefix": "main",
+	}).Info("Preparing new router")
+	mainRouter = mux.NewRouter()
+	if config.Global.HttpServerOptions.OverrideDefaults {
+		mainRouter.SkipClean(config.Global.HttpServerOptions.SkipURLCleaning)
 	}
 
 	if config.Global.ControlAPIPort == 0 {
@@ -1160,12 +1167,6 @@ func start(arguments map[string]interface{}) {
 		defer pprof.StopCPUProfile()
 	}
 
-	if config.Global.ControlAPIPort > 0 {
-		loadAPIEndpoints(controlRouter)
-	} else {
-		router.PreProcess(loadAPIEndpoints)
-	}
-
 	// Set up a default org manager so we can traverse non-live paths
 	if !config.Global.SupressDefaultOrgStore {
 		log.WithFields(logrus.Fields{
@@ -1174,6 +1175,10 @@ func start(arguments map[string]interface{}) {
 		DefaultOrgStore.Init(getGlobalStorageHandler("orgkey.", false))
 		//DefaultQuotaStore.Init(getGlobalStorageHandler(CloudHandler, "orgkey.", false))
 		DefaultQuotaStore.Init(getGlobalStorageHandler("orgkey.", false))
+	}
+
+	if config.Global.ControlAPIPort == 0 {
+		loadAPIEndpoints(mainRouter)
 	}
 
 	// Start listening for reload messages
@@ -1326,8 +1331,17 @@ func listen(l, controlListener net.Listener, err error) {
 			}
 		}
 
+		if config.Global.ControlAPIPort > 0 {
+			loadAPIEndpoints(controlRouter)
+		}
+
 		// Use a custom server so we can control keepalives
 		if config.Global.HttpServerOptions.OverrideDefaults {
+			mainRouter.SkipClean(config.Global.HttpServerOptions.SkipURLCleaning)
+
+			log.WithFields(logrus.Fields{
+				"prefix": "main",
+			}).Info("Custom gateway started")
 			log.WithFields(logrus.Fields{
 				"prefix": "main",
 			}).Warning("HTTP Server Overrides detected, this could destabilise long-running http-requests")
@@ -1335,14 +1349,11 @@ func listen(l, controlListener net.Listener, err error) {
 				Addr:         targetPort,
 				ReadTimeout:  time.Duration(readTimeout) * time.Second,
 				WriteTimeout: time.Duration(writeTimeout) * time.Second,
-				Handler:      router,
+				Handler:      mainHandler{},
 			}
 
 			// Accept connections in a new goroutine.
 			go s.Serve(l)
-			log.WithFields(logrus.Fields{
-				"prefix": "main",
-			}).Info("Custom gateway started")
 
 			if controlListener != nil {
 				cs := &http.Server{
@@ -1357,7 +1368,7 @@ func listen(l, controlListener net.Listener, err error) {
 				"prefix": "main",
 			}).Printf("Gateway started (%s)", VERSION)
 
-			go http.Serve(l, router)
+			go http.Serve(l, mainHandler{})
 
 			if !rpcEmergencyMode {
 				if controlListener != nil {
@@ -1395,6 +1406,10 @@ func listen(l, controlListener net.Listener, err error) {
 				syncPolicies()
 			}
 
+			if config.Global.ControlAPIPort > 0 {
+				loadAPIEndpoints(controlRouter)
+			}
+
 			if config.Global.UseDBAppConfigs {
 				go DashService.StartBeating()
 			}
@@ -1410,13 +1425,13 @@ func listen(l, controlListener net.Listener, err error) {
 				Addr:         ":" + targetPort,
 				ReadTimeout:  time.Duration(readTimeout) * time.Second,
 				WriteTimeout: time.Duration(writeTimeout) * time.Second,
-				Handler:      router,
+				Handler:      mainHandler{},
 			}
 
-			go s.Serve(l)
 			log.WithFields(logrus.Fields{
 				"prefix": "main",
 			}).Info("Custom gateway started")
+			go s.Serve(l)
 
 			if controlListener != nil {
 				cs := &http.Server{
@@ -1431,7 +1446,7 @@ func listen(l, controlListener net.Listener, err error) {
 				"prefix": "main",
 			}).Printf("Gateway resumed (%s)", VERSION)
 
-			go http.Serve(l, router)
+			go http.Serve(l, mainHandler{})
 
 			if !rpcEmergencyMode {
 				if controlListener != nil {

@@ -521,9 +521,8 @@ func (d *DummyProxyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 // Create the individual API (app) specs based on live configurations and assign middleware
 func loadApps(specs []*APISpec, muxer *mux.Router) {
 	hostname := config.Global.HostName
-	defaultMuxer := muxer
 	if hostname != "" {
-		defaultMuxer = muxer.Host(hostname).Subrouter()
+		muxer = muxer.Host(hostname).Subrouter()
 		log.WithFields(logrus.Fields{
 			"prefix": "main",
 		}).Info("API hostname set: ", hostname)
@@ -593,7 +592,7 @@ func loadApps(specs []*APISpec, muxer *mux.Router) {
 					"domain": spec.Domain,
 					"api_id": spec.APIID,
 				}).Warning("Trying to load API with Domain when custom domains are disabled.")
-				subrouter = defaultMuxer
+				subrouter = muxer
 			}
 
 			chainObj := processSpec(spec, apisByListen, redisStore, redisOrgStore, healthStore, rpcAuthStore, rpcOrgStore, subrouter)
