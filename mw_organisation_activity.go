@@ -8,7 +8,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 var orgChanMap = make(map[string]chan bool)

@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/config"
 )
 
 const EH_JSVMHandler apidef.TykEventHandlerName = "eh_dynamic_handler"

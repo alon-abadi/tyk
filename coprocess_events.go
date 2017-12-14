@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/config"
 )
 
 // Constant for event system.

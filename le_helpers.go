@@ -7,8 +7,8 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/storage"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/storage"
 )
 
 const LEKeyPrefix = "le_ssl:"

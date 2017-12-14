@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 func createGetHandler() *WebHookHandler {

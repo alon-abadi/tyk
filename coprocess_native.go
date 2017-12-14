@@ -21,7 +21,7 @@ import "C"
 import (
 	"github.com/golang/protobuf/proto"
 
-	"github.com/TykTechnologies/tyk/coprocess"
+	"github.com/gtforge/tyk/coprocess"
 
 	"encoding/json"
 	"unsafe"

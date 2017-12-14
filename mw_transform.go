@@ -12,7 +12,7 @@ import (
 	"github.com/clbanning/mxj"
 	"golang.org/x/net/html/charset"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 func WrappedCharsetReader(s string, i io.Reader) (io.Reader, error) {

@@ -10,8 +10,8 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/clbanning/mxj"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/user"
 )
 
 type ResponseTransformMiddleware struct {

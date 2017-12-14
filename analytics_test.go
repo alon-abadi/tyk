@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 func TestGeoIPLookup(t *testing.T) {

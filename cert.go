@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/TykTechnologies/tyk/certs"
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/certs"
+	"github.com/gtforge/tyk/config"
 
 	"github.com/gorilla/mux"
 )

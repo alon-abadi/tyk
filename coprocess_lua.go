@@ -76,8 +76,8 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/coprocess"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/coprocess"
 )
 
 // CoProcessName specifies the driver name.

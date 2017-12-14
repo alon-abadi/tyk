@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/TykTechnologies/tyk/storage"
+	"github.com/gtforge/tyk/storage"
 )
 
 const (

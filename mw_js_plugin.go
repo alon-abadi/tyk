@@ -17,8 +17,8 @@ import (
 	"github.com/robertkrimen/otto"
 	_ "github.com/robertkrimen/otto/underscore"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/user"
 
 	"github.com/Sirupsen/logrus"
 )

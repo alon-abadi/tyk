@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/apidef/importer"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/apidef/importer"
 )
 
 var commandModeOptions = []string{

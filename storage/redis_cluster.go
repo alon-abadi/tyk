@@ -10,7 +10,7 @@ import (
 	"github.com/garyburd/redigo/redis"
 	"github.com/lonelycode/redigocluster/rediscluster"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 // ------------------- REDIS CLUSTER STORAGE MANAGER -------------------------------

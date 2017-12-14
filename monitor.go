@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/user"
 )
 
 type Monitor struct{}

@@ -30,9 +30,9 @@ import (
 	"github.com/Sirupsen/logrus"
 	cache "github.com/pmylund/go-cache"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/user"
 )
 
 const defaultUserAgent = "Tyk/" + VERSION

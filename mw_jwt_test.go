@@ -10,7 +10,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/justinas/alice"
 
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/user"
 )
 
 const jwtDef = `{

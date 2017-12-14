@@ -12,9 +12,9 @@ import (
 	"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/storage"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/storage"
+	"github.com/gtforge/tyk/user"
 )
 
 /*

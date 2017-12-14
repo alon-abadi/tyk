@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 func urlRewrite(meta *apidef.URLRewriteMeta, r *http.Request) (string, error) {

@@ -10,8 +10,8 @@ import (
 	"github.com/oschwald/maxminddb-golang"
 	"gopkg.in/vmihailenco/msgpack.v2"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/storage"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/storage"
 )
 
 // AnalyticsRecord encodes the details of a request

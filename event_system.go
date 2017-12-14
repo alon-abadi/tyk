@@ -10,8 +10,8 @@ import (
 
 	"github.com/rubyist/circuitbreaker"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/config"
 )
 
 // The name for event handlers as defined in the API Definition JSON/BSON format

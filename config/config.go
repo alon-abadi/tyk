@@ -10,8 +10,8 @@ import (
 
 	"github.com/kelseyhightower/envconfig"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	logger "github.com/TykTechnologies/tyk/log"
+	"github.com/gtforge/tyk/apidef"
+	logger "github.com/gtforge/tyk/log"
 )
 
 var log = logger.Get()

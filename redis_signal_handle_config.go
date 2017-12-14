@@ -9,7 +9,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 type ConfigPayload struct {

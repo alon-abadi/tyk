@@ -10,7 +10,7 @@ import (
 	"testing"
 	"text/template"
 
-	"github.com/TykTechnologies/tyk/apidef"
+	"github.com/gtforge/tyk/apidef"
 )
 
 func TestReverseProxyRetainHost(t *testing.T) {

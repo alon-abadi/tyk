@@ -6,8 +6,8 @@ import (
 	"github.com/spaolacci/murmur3"
 	"gopkg.in/vmihailenco/msgpack.v2"
 
-	"github.com/TykTechnologies/tyk/config"
-	logger "github.com/TykTechnologies/tyk/log"
+	"github.com/gtforge/tyk/config"
+	logger "github.com/gtforge/tyk/log"
 )
 
 var log = logger.Get()

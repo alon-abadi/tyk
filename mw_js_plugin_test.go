@@ -13,9 +13,9 @@ import (
 	"github.com/Sirupsen/logrus"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/config"
-	logger "github.com/TykTechnologies/tyk/log"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/config"
+	logger "github.com/gtforge/tyk/log"
 )
 
 func TestJSVMLogs(t *testing.T) {

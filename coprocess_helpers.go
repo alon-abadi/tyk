@@ -5,8 +5,8 @@ package main
 import (
 	"encoding/json"
 
-	"github.com/TykTechnologies/tyk/coprocess"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/coprocess"
+	"github.com/gtforge/tyk/user"
 )
 
 // TykSessionState takes a coprocess.SessionState (as returned by the Protocol Buffer binding), and outputs a standard Tyk SessionState.

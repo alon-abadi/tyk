@@ -20,9 +20,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/certs"
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/certs"
+	"github.com/gtforge/tyk/config"
 )
 
 func getTLSClient(cert *tls.Certificate, caCert []byte) *http.Client {

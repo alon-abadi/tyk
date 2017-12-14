@@ -13,7 +13,7 @@ import (
 	"github.com/garyburd/redigo/redis"
 	"github.com/lonelycode/gorpc"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 const sampleDefiniton = `{

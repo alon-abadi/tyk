@@ -10,7 +10,7 @@ import (
 
 	"github.com/justinas/alice"
 
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/user"
 )
 
 func createAuthKeyAuthSession() *user.SessionState {

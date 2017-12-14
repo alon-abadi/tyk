@@ -14,8 +14,8 @@ import (
 
 	"fmt"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/user"
 )
 
 // Enums for keys to be stored in a session context - this is how gorilla expects

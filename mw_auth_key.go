@@ -7,8 +7,8 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/certs"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/certs"
 )
 
 // KeyExists will check if the key being used to access the API is in the request data,

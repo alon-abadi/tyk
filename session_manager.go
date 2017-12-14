@@ -5,9 +5,9 @@ import (
 
 	"github.com/TykTechnologies/leakybucket"
 	"github.com/TykTechnologies/leakybucket/memorycache"
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/storage"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/storage"
+	"github.com/gtforge/tyk/user"
 )
 
 type PublicSession struct {

@@ -9,7 +9,7 @@ import (
 
 	"github.com/gocraft/health"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 var applicationGCStats = debug.GCStats{}

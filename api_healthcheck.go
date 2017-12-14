@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/storage"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/storage"
 )
 
 type HealthPrefix string

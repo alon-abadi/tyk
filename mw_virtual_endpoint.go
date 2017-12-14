@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/TykTechnologies/tyk/apidef"
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/apidef"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/user"
 )
 
 // RequestObject is marshalled to JSON string and passed into JSON middleware

@@ -10,7 +10,7 @@ import (
 	"github.com/justinas/alice"
 	"github.com/satori/go.uuid"
 
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/user"
 )
 
 func createRLSession() *user.SessionState {

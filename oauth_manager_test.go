@@ -15,8 +15,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/justinas/alice"
 
-	"github.com/TykTechnologies/tyk/config"
-	"github.com/TykTechnologies/tyk/user"
+	"github.com/gtforge/tyk/config"
+	"github.com/gtforge/tyk/user"
 )
 
 const (

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/TykTechnologies/tyk/config"
+	"github.com/gtforge/tyk/config"
 )
 
 const (
