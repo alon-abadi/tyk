@@ -67,6 +67,7 @@ var (
 	policiesMu   sync.RWMutex
 	policiesByID = map[string]user.Policy{}
 
+	router        = &routerSwapper{}
 	mainRouter    *mux.Router
 	controlRouter *mux.Router
 	LE_MANAGER    letsencrypt.Manager
@@ -98,6 +99,11 @@ func getApiSpec(apiID string) *APISpec {
 // Create all globals and init connection handlers
 func setupGlobals() {
 	mainRouter = mux.NewRouter()
+	if config.Global.HttpServerOptions.OverrideDefaults {
+		mainRouter.SkipClean(config.Global.HttpServerOptions.SkipURLCleaning)
+	}
+	router.Swap(mainRouter)
+
 	controlRouter = mux.NewRouter()
 
 	if config.Global.EnableAnalytics && config.Global.Storage.Type != "redis" {
@@ -1310,11 +1316,6 @@ func listen(l, controlListener net.Listener, err error) {
 
 		// Use a custom server so we can control keepalives
 		if config.Global.HttpServerOptions.OverrideDefaults {
-			mainRouter.SkipClean(config.Global.HttpServerOptions.SkipURLCleaning)
-
-			log.WithFields(logrus.Fields{
-				"prefix": "main",
-			}).Info("Custom gateway started")
 			log.WithFields(logrus.Fields{
 				"prefix": "main",
 			}).Warning("HTTP Server Overrides detected, this could destabilise long-running http-requests")
@@ -1322,11 +1323,14 @@ func listen(l, controlListener net.Listener, err error) {
 				Addr:         targetPort,
 				ReadTimeout:  time.Duration(readTimeout) * time.Second,
 				WriteTimeout: time.Duration(writeTimeout) * time.Second,
-				Handler:      mainHandler{},
+				Handler:      router,
 			}
 
 			// Accept connections in a new goroutine.
 			go s.Serve(l)
+			log.WithFields(logrus.Fields{
+				"prefix": "main",
+			}).Info("Custom gateway started")
 
 			if controlListener != nil {
 				cs := &http.Server{
@@ -1341,7 +1345,7 @@ func listen(l, controlListener net.Listener, err error) {
 				"prefix": "main",
 			}).Printf("Gateway started (%s)", VERSION)
 
-			go http.Serve(l, mainHandler{})
+			go http.Serve(l, router)
 
 			if !rpcEmergencyMode {
 				if controlListener != nil {
@@ -1398,13 +1402,13 @@ func listen(l, controlListener net.Listener, err error) {
 				Addr:         ":" + targetPort,
 				ReadTimeout:  time.Duration(readTimeout) * time.Second,
 				WriteTimeout: time.Duration(writeTimeout) * time.Second,
-				Handler:      mainHandler{},
+				Handler:      router,
 			}
 
+			go s.Serve(l)
 			log.WithFields(logrus.Fields{
 				"prefix": "main",
 			}).Info("Custom gateway started")
-			go s.Serve(l)
 
 			if controlListener != nil {
 				cs := &http.Server{
@@ -1419,7 +1423,7 @@ func listen(l, controlListener net.Listener, err error) {
 				"prefix": "main",
 			}).Printf("Gateway resumed (%s)", VERSION)
 
-			go http.Serve(l, mainHandler{})
+			go http.Serve(l, router)
 
 			if !rpcEmergencyMode {
 				if controlListener != nil {
