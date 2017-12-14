@@ -658,6 +658,18 @@ const confSchema = `{
 				}
 			}
 		}
+	},
+	"newrelic": {
+		"type": ["object", "null"],
+		"additionalProperties": false,
+		"properties": {
+			"app_name": {
+				"type": "string"
+			},
+			"license_key": {
+				"type": "string"
+			}
+		}
 	}
 }
 }`
