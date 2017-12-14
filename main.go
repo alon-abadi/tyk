@@ -179,7 +179,7 @@ func setupGlobals() {
 
 	CertificateManager = certs.NewCertificateManager(getGlobalStorageHandler("cert-", false), certificateSecret, log)
 
-	if config.Global.NewRelic.Enabled {
+	if config.Global.NewRelic.AppName != "" {
 		NewRelicApplication = SetupNewRelic()
 	}
 }
@@ -640,7 +640,7 @@ func doReload() {
 	}
 
 	loadApps(apiSpecs, mainRouter)
-	if config.Global.NewRelic.Enabled {
+	if config.Global.NewRelic.AppName != "" {
 		log.WithFields(logrus.Fields{
 			"prefix": "main",
 		}).Info("Adding NewRelic instrumentation")
