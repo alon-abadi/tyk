@@ -170,6 +170,12 @@ type SecurityConfig struct {
 	Certificates                     CertificatesConfig `json:"certificates"`
 }
 
+type NewRelicConfig struct {
+	Enabled bool   `json:"enabled"`
+	License string `json:"license_key"`
+	AppName string `json:"app_name"`
+}
+
 // Config is the configuration object used by tyk to set up various parameters.
 type Config struct {
 	// OriginalPath is the path to the config file that was read. If
@@ -260,6 +266,7 @@ type Config struct {
 	ProxyDefaultTimeout               int                                   `json:"proxy_default_timeout"`
 	LogLevel                          string                                `json:"log_level"`
 	Security                          SecurityConfig                        `json:"security"`
+	NewRelic                          NewRelicConfig                        `json:"newrelic"`
 }
 
 type CertData struct {
