@@ -17,6 +17,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/newrelic/go-agent"
+
 	"github.com/Sirupsen/logrus"
 	logrus_syslog "github.com/Sirupsen/logrus/hooks/syslog"
 	"github.com/bshuster-repo/logrus-logstash-hook"
@@ -57,6 +59,7 @@ var (
 	RPCListener              RPCStorageHandler
 	DashService              DashboardServiceSender
 	CertificateManager       *certs.CertificateManager
+	NewRelicApplication      newrelic.Application
 
 	apisMu   sync.RWMutex
 	apiSpecs []*APISpec
@@ -177,7 +180,7 @@ func setupGlobals() {
 	CertificateManager = certs.NewCertificateManager(getGlobalStorageHandler("cert-", false), certificateSecret, log)
 
 	if config.Global.NewRelic.Enabled {
-		setupNewRelic()
+		NewRelicApplication = SetupNewRelic()
 	}
 }
 
@@ -320,19 +323,6 @@ func controlAPICheckClientCertificate(certLevel string, next http.Handler) http.
 
 		next.ServeHTTP(w, r)
 	})
-}
-
-func loadProfilingEndpoints(muxer *mux.Router) {
-	log.WithFields(logrus.Fields{
-		"prefix": "main",
-	}).Debug("Adding pprof endpoints")
-
-	r := muxer.PathPrefix("/debug/pprof").Subrouter()
-	r.HandleFunc("/{rest:.*}", pprof_http.Index)
-	r.HandleFunc("/cmdline", pprof_http.Cmdline)
-	r.HandleFunc("/profile", pprof_http.Profile)
-	r.HandleFunc("/symbol", pprof_http.Symbol)
-	r.HandleFunc("/trace", pprof_http.Trace)
 }
 
 // Set up default Tyk control API endpoints - these are global, so need to be added first
@@ -650,6 +640,12 @@ func doReload() {
 	}
 
 	loadApps(apiSpecs, mainRouter)
+	if config.Global.NewRelic.Enabled {
+		log.WithFields(logrus.Fields{
+			"prefix": "main",
+		}).Info("Adding NewRelic instrumentation")
+		AddNewRelicInstrumentation(NewRelicApplication, mainRouter)
+	}
 
 	log.WithFields(logrus.Fields{
 		"prefix": "main",
@@ -1329,10 +1325,10 @@ func listen(l, controlListener net.Listener, err error) {
 				loadApps(apiSpecs, mainRouter)
 				syncPolicies()
 			}
-		}
 
-		if config.Global.ControlAPIPort > 0 {
-			loadAPIEndpoints(controlRouter)
+			if config.Global.ControlAPIPort > 0 {
+				loadAPIEndpoints(controlRouter)
+			}
 		}
 
 		// Use a custom server so we can control keepalives
