@@ -37,7 +37,7 @@ func SetupNewRelic() (app newrelic.Application) {
 // AddNewRelicInstrumentation adds NewRelic instrumentation to the router
 func AddNewRelicInstrumentation(app newrelic.Application, r *mux.Router) {
 	if app != nil {
-		nrgorilla.InstrumentRoutes(mainRouter, app)
+		nrgorilla.InstrumentRoutes(r, app)
 	}
 }
 
