@@ -1,13 +1,16 @@
 package main
 
 import (
+	"fmt"
+	"strconv"
+
+	"github.com/gtforge/tyk/config"
+
 	"github.com/Sirupsen/logrus"
 	"github.com/gocraft/health"
 	"github.com/gorilla/mux"
 	"github.com/newrelic/go-agent"
 	"github.com/newrelic/go-agent/_integrations/nrgorilla/v1"
-
-	"github.com/gtforge/tyk/config"
 )
 
 // SetupNewRelic creates new newrelic.Application instance
@@ -37,7 +40,7 @@ func SetupNewRelic() (app newrelic.Application) {
 // AddNewRelicInstrumentation adds NewRelic instrumentation to the router
 func AddNewRelicInstrumentation(app newrelic.Application, r *mux.Router) {
 	if app != nil {
-		nrgorilla.InstrumentRoutes(mainRouter, app)
+		nrgorilla.InstrumentRoutes(r, app)
 	}
 }
 
@@ -65,25 +68,29 @@ type newRelicSink struct {
 }
 
 func (s *newRelicSink) EmitEvent(job string, event string, kvs map[string]string) {
-	params := make(map[string]interface{}, len(kvs))
-	for k, v := range kvs {
-		params[k] = v
-	}
-	s.relic.RecordCustomEvent(job+":"+event, params)
+	s.relic.RecordCustomEvent(job+":"+event, makeParams(kvs))
 }
 
 func (s *newRelicSink) EmitEventErr(job string, event string, err error, kvs map[string]string) {
-
+	s.relic.RecordCustomEvent(job+":"+event+":msg:"+err.Error(), makeParams(kvs))
 }
 
 func (s *newRelicSink) EmitTiming(job string, event string, nanoseconds int64, kvs map[string]string) {
-
+	s.relic.RecordCustomEvent(job+":"+event+":dur(ns):"+strconv.FormatInt(nanoseconds, 10), makeParams(kvs))
 }
 
 func (s *newRelicSink) EmitComplete(job string, status health.CompletionStatus, nanoseconds int64, kvs map[string]string) {
-
+	s.relic.RecordCustomEvent(job+":health:"+status.String()+":dur(ns):"+strconv.FormatInt(nanoseconds, 10), makeParams(kvs))
 }
 
 func (s *newRelicSink) EmitGauge(job string, event string, value float64, kvs map[string]string) {
+	s.relic.RecordCustomEvent(job+":"+event+":value:"+fmt.Sprintf("%.2f", value), makeParams(kvs))
+}
 
+func makeParams(kvs map[string]string) (params map[string]interface{}) {
+	params = make(map[string]interface{}, len(kvs))
+	for k, v := range kvs {
+		params[k] = v
+	}
+	return
 }
