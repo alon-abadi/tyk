@@ -430,12 +430,6 @@ func httpTransport(timeOut int, rw http.ResponseWriter, req *http.Request, p *Re
 		return wsTransport
 	}
 
-	//if config.Global.NewRelic.AppName != "" {
-	//	if txn, ok := rw.(newrelic.Transaction); ok {
-	//		return newrelic.NewRoundTripper(txn, transport)
-	//	}
-	//}
-
 	return transport
 }
 
