@@ -776,6 +776,13 @@
 			"path": "gopkg.in/xmlpath.v2",
 			"revision": "860cbeca3ebcc600db0b213c0e83ad6ce91f5739",
 			"revisionTime": "2015-08-20T20:48:37Z"
+		},
+		{
+			"checksumSHA1": "CZGCwzaWmEQgG07jJt+JC0rzpbk=",
+			"path": "rsc.io/letsencrypt",
+			"revision": "33926faef6d434b854ea994228f11d0185faa0c1",
+			"revisionTime": "2017-06-28T17:37:31Z",
+			"tree": true
 		}
 	],
 	"rootPath": "github.com/gtforge/tyk"
