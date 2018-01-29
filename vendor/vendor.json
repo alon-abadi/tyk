@@ -417,6 +417,14 @@
 			"revisionTime": "2016-11-16T21:03:09Z"
 		},
 		{
+			"checksumSHA1": "jAzqolwnRJhHsKXmmvKNrHqxqAw=",
+			"path": "github.com/spaolacci/murmur3",
+			"revision": "9f5d223c60793748f04a9d5b4b4eacddfc1f755d",
+			"revisionTime": "2017-08-19T07:11:01Z",
+			"version": "v1.1",
+			"versionExact": "v1.1"
+		},
+		{
 			"checksumSHA1": "qR3q2rm/H13PX5Twte9x7PK9Td4=",
 			"path": "github.com/square/go-jose",
 			"revision": "63d7cfa0284d0bc9bf41d58f802037559c45ce8f",
