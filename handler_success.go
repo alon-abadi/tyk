@@ -321,10 +321,12 @@ func (s *SuccessHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) *http
 	if s.Spec.Proxy.StripListenPath {
 		lPath := s.Spec.Proxy.ListenPath
 		log.Debug("Stripping: ", lPath)
-		if strings.Contains(lPath, "{id}") {
-			log.Debug("Detected {id} wildcard, replacing with regexp")
-			lPathExp := regexp.MustCompile(strings.Replace(lPath, "{id}", `(\w+)`, -1))
-			log.Debug("Stripping with regexp: ", lPathExp.String())
+		// check presence of {id} wildcard
+		if wcIndex := strings.LastIndex(lPath, "{id}"); wcIndex > -1 {
+			log.Println("Detected {id} wildcard, replacing with regexp")
+			// stripping until the position of the end of the last {id} wildcard
+			lPathExp := regexp.MustCompile(strings.Replace(lPath[:wcIndex+4], "{id}", `(\w+)`, -1))
+			log.Println("Stripping with regexp: ", lPathExp.String())
 			r.URL.Path = lPathExp.ReplaceAllString(r.URL.Path, "")
 		} else {
 			r.URL.Path = strings.Replace(r.URL.Path, lPath, "", 1)
