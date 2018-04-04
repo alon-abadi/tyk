@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"io"
 	"net/http"
+	"regexp"
 	"runtime/pprof"
 	"strconv"
 	"strings"
@@ -318,8 +319,16 @@ func (s *SuccessHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) *http
 	log.Debug("Started proxy")
 	// Make sure we get the correct target URL
 	if s.Spec.Proxy.StripListenPath {
-		log.Debug("Stripping: ", s.Spec.Proxy.ListenPath)
-		r.URL.Path = strings.Replace(r.URL.Path, s.Spec.Proxy.ListenPath, "", 1)
+		lPath := s.Spec.Proxy.ListenPath
+		log.Debug("Stripping: ", lPath)
+		if strings.Contains(lPath, "{id}") {
+			log.Debug("Detected {id} wildcard, replacing with regexp")
+			lPathExp := regexp.MustCompile(strings.Replace(lPath, "{id}", `(\w+)`, -1))
+			log.Debug("Stripping with regexp: ", lPathExp.String())
+			r.URL.Path = lPathExp.ReplaceAllString(r.URL.Path, "")
+		} else {
+			r.URL.Path = strings.Replace(r.URL.Path, lPath, "", 1)
+		}
 		log.Debug("Upstream Path is: ", r.URL.Path)
 	}
 
